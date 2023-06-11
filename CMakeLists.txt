@@ -57,6 +57,13 @@ set(EEVM_SIMPLE_SRCS
   src/simple/simplestorage.cpp
 )
 
+set(EEVM_ERIGON_SRCS
+  src/erigon/erigonaccount.cpp
+  src/erigon/erigonglobalstate.cpp
+  src/erigon/erigonstorage.cpp
+  src/erigon/erigondb.cpp
+)
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 # Libraries
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
@@ -124,3 +131,17 @@ add_sample(hello_world)
 add_sample(sum)
 add_sample(erc20)
 add_sample(disassembler)
+
+function(add_erigon name) 
+  add_executable(${name}
+    samples/${name}/main.cpp
+    ${EEVM_ERIGON_SRCS}
+  )
+  target_include_directories(${name} PRIVATE
+    ${EEVM_INCLUDE_DIRS}
+    ../mdbx-go/mdbxdist/
+  )
+  target_link_libraries(${name} eevm /home/ubuntu/ssli/mdbx-go/mdbxdist/libmdbx.a)
+endfunction()
+
+add_erigon(transfer)

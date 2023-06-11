@@ -547,6 +547,17 @@ namespace eevm
         case Opcode::BYTE:
           byte();
           break;
+
+        case Opcode::SHL:
+          shl();
+          break;
+        case Opcode::SHR:
+          shr();
+          break;
+        case Opcode::SAR:
+          sar();
+          break;
+
         case Opcode::JUMP:
           jump();
           break;
@@ -943,6 +954,24 @@ namespace eevm
       const auto mask = uint256_t(255) << shift;
       const auto val = ctxt->s.pop();
       ctxt->s.push((val & mask) >> shift);
+    }
+
+    void shl() {
+      // (arg2 * 2^arg1) mod 2^256
+      const auto shift = ctxt->s.pop();
+      const auto val = ctxt->s.pop();
+      ctxt->s.push(val << shift);
+    }
+
+    void shr() {
+      const auto shift = ctxt->s.pop();
+      const auto val = ctxt->s.pop();
+      ctxt->s.push(val >> shift);
+    }
+
+    void sar() {
+      std::cerr << "NI SAR" << endl;
+      exit(-1);
     }
 
     void jump()

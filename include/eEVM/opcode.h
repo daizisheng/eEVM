@@ -40,6 +40,10 @@ namespace eevm
     NOT    = 0x19, // Bitwise NOT operation
     BYTE   = 0x1a, // Retrieve single byte from word
 
+    SHL = 0x1b, // shift, val
+    SHR = 0x1c, // shift, val
+    SAR = 0x1d, // shift, val
+
     // 20s: SHA3
     SHA3   = 0x20, // Compute Keccak-256 hash.
 

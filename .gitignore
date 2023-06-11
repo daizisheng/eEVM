@@ -294,3 +294,18 @@ __pycache__/
 doxygen/
 sphinx/build/
 sphinx/source/apidoc/
+
+# more
+*.cmake
+/eevm_tests
+/disassembler
+/*.a
+/hello
+/erc20
+/hello_world
+/transfer
+/sum
+/CMakeCache.txt
+Makefile
+CMakeFiles
+
